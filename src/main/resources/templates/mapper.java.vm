@@ -1,0 +1,21 @@
+package ${package.Mapper};
+
+import ${package.Entity}.${entity};
+import ${superMapperClassPackage};
+
+/**
+ * Company:     b2c哎呦商城
+ * Department:  研发部
+ * Title:       [aiyou — ${entity}模块]
+ * Description: [${entity}类信息的持久层]
+ * Created on   ${date}
+ * @version     V1.0
+ * @author      ${author}
+ */
+#if(${kotlin})
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
+#else
+public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+
+}
+#end
