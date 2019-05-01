@@ -10,6 +10,9 @@ HELP.md
 .settings
 .springBeans
 .sts4-cache
+LICENSE
+.mvn/*
+.gitignore.bak
 
 ### IntelliJ IDEA ###
 .idea
