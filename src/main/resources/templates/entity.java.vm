@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 
 /**
  * Company:     b2c哎呦商城
- * Department:  研发部
+ * Department:  研发一组
  * Title:       [aiyou — ${entity}模块]
  * Description: [${entity}类信息的实体类]
  * Created on   ${date}

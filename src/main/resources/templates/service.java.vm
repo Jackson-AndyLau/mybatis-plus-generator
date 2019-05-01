@@ -1,0 +1,18 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import ${superServiceClassPackage};
+import com.baomidou.mybatisplus.plugins.Page;
+
+/**
+ * Company:     b2c哎呦商城
+ * Department:  研发一组
+ * Title:       [aiyou — ${entity}模块]
+ * Description: [${entity}类信息的service层接口]
+ * Created on   ${date}
+ * @version     V1.0
+ * @author      ${author}
+ */
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+		Page<${entity}> selectPageWithParam(Page<${entity}> page,${entity} param);
+}
