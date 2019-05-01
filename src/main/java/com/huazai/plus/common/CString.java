@@ -4,23 +4,18 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 
 /**
  * 
- * <p>
- * 
- * @ClassName : CBoolean
- *            </p>
- *            <p>
- * @Description : TODO
- *              </p>
- * 
- * @Author : HuaZai
- * @CreateDate : 2019年4月29日 下午2:45:05
- * @ContactInformation : 1461522031@qq.com/huazai6789@aliyun.com
+ * @description
+ *              <li>字符常量池
+ * @class_name CString
+ * @package com.huazai.plus.common
+ * @created 2019年5月1日 下午6:00:06
+ * @contact who.seek.me@java98k.vip
  *
- * @PackgeName : com.huazai.plus.common.CBoolean
- *
- * @Version : V1.0.0
+ * @version V1.0.0
+ * @author HuaZai
  */
-public interface CString {
+public interface CString
+{
 
 	// ---------------------------------------------------------------- file suffix
 	String C_DOT_CLASS = ".class";

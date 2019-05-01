@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -23,10 +26,26 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.huazai.plus.common.CString;
 import com.huazai.plus.common.Constant;
 
-public class MyBatisConfig {
+/**
+ * 
+ * @description
+ *              <li>MyBatis配置类
+ * @class_name MyBatisConfig
+ * @package com.huazai.plus.config
+ * @created 2019年5月1日 下午6:01:02
+ * @contact who.seek.me@java98k.vip
+ *
+ * @version V1.0.0
+ * @author HuaZai
+ */
+@Configuration
+@Component
+public class MyBatisConfig
+{
 
-	public static void generation() {
-		
+	public static void generation()
+	{
+
 		// 初始化代码生成器
 		final AutoGenerator generator = new AutoGenerator();
 
@@ -84,29 +103,35 @@ public class MyBatisConfig {
 		/**
 		 * 自定义配置
 		 */
-		final InjectionConfig iConfig = new InjectionConfig() {
+		final InjectionConfig iConfig = new InjectionConfig()
+		{
 
 			@Override
-			public void initMap() {
+			public void initMap()
+			{
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("aiyou", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
 				this.setMap(map);
 			}
 		};
 		final List<FileOutConfig> fConfigs = new ArrayList<>();
-		fConfigs.add(new FileOutConfig(Constant.TEMPLATE_FREEMARKER_PATH) {
+		fConfigs.add(new FileOutConfig(Constant.TEMPLATE_FREEMARKER_PATH)
+		{
 
 			@Override
-			public String outputFile(TableInfo tableInfo) {
+			public String outputFile(TableInfo tableInfo)
+			{
 
 				// 自定义输出文件名 ， 如果 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化
 				return pConfig.getParent() + Constant.OUTFILE_XMLBASEURL + pConfig.getModuleName() + StringPool.SLASH
 						+ tableInfo.getEntityName() + Constant.OUTFILE_XMLSUFFIXNAME + StringPool.DOT_XML;
 			}
 		});
-		iConfig.setFileCreate(new IFileCreate() {
+		iConfig.setFileCreate(new IFileCreate()
+		{
 			@Override
-			public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath) {
+			public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath)
+			{
 
 				// true 创建目录和内容，false 只创建目录
 				// return false;

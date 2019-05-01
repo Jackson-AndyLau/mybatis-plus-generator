@@ -21,7 +21,7 @@
 	</properties>
 
 	<dependencies>
-		<!-- spring boot -->
+		<!-- spring boot相关 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -44,18 +44,18 @@
 			<artifactId>velocity-engine-core</artifactId>
 			<version>2.1</version>
 		</dependency>
-		<!-- Freemarker -->
+		<!-- Freemarker相关 -->
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 		</dependency>
-		<!-- Beetl -->
+		<!-- Beetl相关 -->
 		<dependency>
 			<groupId>com.ibeetl</groupId>
 			<artifactId>beetl</artifactId>
 			<version>3.0.0.M1</version>
 		</dependency>
-		<!-- mysql -->
+		<!-- mysql相关 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

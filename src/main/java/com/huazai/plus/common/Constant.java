@@ -1,24 +1,19 @@
 package com.huazai.plus.common;
 
 /**
- * 常量池
- * <p>
  * 
- * @ClassName : Constant
- *            </p>
- *            <p>
- * @Description : TODO
- *              </p>
- * 
- * @Author : HuaZai
- * @CreateDate : 2019年4月28日 下午3:47:58
- * @ContactInformation : 1461522031@qq.com/huazai6789@aliyun.com
+ * @description
+ *              <li>常量池
+ * @class_name Constant
+ * @package com.huazai.plus.common
+ * @created 2019年5月1日 下午5:58:52
+ * @contact who.seek.me@java98k.vip
  *
- * @PackgeName : com.huazai.plus.common.Constant
- *
- * @Version : V1.0.0
+ * @version V1.0.0
+ * @author HuaZai
  */
-public class Constant {
+public class Constant
+{
 
 	// MyBatis-Config 全局配置相关
 	public static final String GLOBAL_AUTHOR = "huazai";
