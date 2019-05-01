@@ -30,10 +30,10 @@ public class Constant {
 	public static final String GLOBAL_CONTROLLERNAME = "%sController";
 
 	// MySQL 数据源配置相关
-	public static final String MYSQL_URI = "jdbc:mysql://10.150.64.136:3306/asp_dev?useUnicode=true&useSSL=false&characterEncoding=utf8";
+	public static final String MYSQL_URI = "jdbc:mysql://***.***.***.***:3306/b2c_aiyou?useUnicode=true&useSSL=false&characterEncoding=utf8";
 	public static final String MYSQL_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-	public static final String MYSQL_USERNAME = "iap_dev";
-	public static final String MYSQL_PASSWORD = "mysql_dev";
+	public static final String MYSQL_USERNAME = "*****";
+	public static final String MYSQL_PASSWORD = "*********";
 
 	// 模板引擎配置相关
 	public static final String TEMPLATE_FREEMARKER_PATH = "/templates/mapper.xml.vm";
@@ -57,8 +57,8 @@ public class Constant {
 	public static final String STRATEGY_SUPERSERVICE = "com.huazai.b2c.aiyou.base.service.BaseService";
 	public static final String STRATEGY_SUPERSERVICEIMPL = "com.huazai.b2c.aiyou.base.service.impl.BaseServiceImpl";
 	public static final String STRATEGY_SUPERCONTROLLER = "com.huazai.b2c.aiyou.base.controller.BaseController";
-	public static final String STRATEGY_TABLEPREFIX = "asp_";
-	public static final String STRATEGY_INCLUDE = "asp_send_sms";
+	public static final String STRATEGY_TABLEPREFIX = "aiyou_";
+	public static final String STRATEGY_INCLUDE = "aiyou_employee_role";
 
 	// 样式表
 	public static final String RESULT_SUCCEED = "<div style='text-align:center;margin:0 auto;border:1px solid #FFF;width:300px;height:100px'><h1> <font color='red'>Successfully</font></h1></div>";
