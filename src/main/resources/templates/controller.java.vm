@@ -25,8 +25,9 @@ import io.swagger.annotations.*;
  * Department:  研发一组
  * Title:       [aiyou — ${entity}模块]
  * Description: [${entity}类信息的controller层接口]
- * Created on   ${date}
- * @version     V1.0
+ * Created on:  ${date}
+ * Contacts:    [who.seek.me@java98k.vip]
+ * @version     V1.1.0
  * @author      ${author}
  */
 @Slf4j
