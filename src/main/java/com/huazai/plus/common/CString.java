@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
  *              <li>字符常量池
  * @class_name CString
  * @package com.huazai.plus.common
- * @created 2019年5月1日 下午6:00:06
+ * @created 2017年5月1日 下午6:00:06
  * @contact who.seek.me@java98k.vip
  *
  * @version V1.0.0

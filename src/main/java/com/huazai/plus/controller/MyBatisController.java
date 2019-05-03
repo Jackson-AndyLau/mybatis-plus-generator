@@ -13,7 +13,7 @@ import com.huazai.plus.config.MyBatisConfig;
  *              <li>控制层
  * @class_name MyBatisController
  * @package com.huazai.plus.controller
- * @created 2019年5月1日 下午6:01:23
+ * @created 2017年5月1日 下午6:01:23
  * @contact who.seek.me@java98k.vip
  *
  * @version V1.0.0

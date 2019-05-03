@@ -32,7 +32,7 @@ import com.huazai.plus.common.Constant;
  *              <li>MyBatis配置类
  * @class_name MyBatisConfig
  * @package com.huazai.plus.config
- * @created 2019年5月1日 下午6:01:02
+ * @created 2017年5月1日 下午6:01:02
  * @contact who.seek.me@java98k.vip
  *
  * @version V1.0.0

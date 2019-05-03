@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *              <li>主项目启动类
  * @class_name MybatisPlusGeneratorApplication
  * @package com.huazai.plus
- * @created 2019年5月1日 下午6:01:45
+ * @created 2017年5月1日 下午6:01:45
  * @contact who.seek.me@java98k.vip
  *
  * @version V1.0.0

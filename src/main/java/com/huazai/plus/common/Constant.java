@@ -6,7 +6,7 @@ package com.huazai.plus.common;
  *              <li>常量池
  * @class_name Constant
  * @package com.huazai.plus.common
- * @created 2019年5月1日 下午5:58:52
+ * @created 2017年5月1日 下午5:58:52
  * @contact who.seek.me@java98k.vip
  *
  * @version V1.0.0
