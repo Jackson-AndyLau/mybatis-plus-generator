@@ -27,6 +27,7 @@ public class MyBatisController
 	@GetMapping(value = "/plus/generation")
 	public String generationNow()
 	{
+		// TODO 修改模板的注释，怎么全是controller的层接口呀，这个是不对的哦
 		MyBatisConfig.generation();
 
 		return Constant.RESULT_SUCCEED;
