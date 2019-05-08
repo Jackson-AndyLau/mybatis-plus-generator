@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -53,9 +52,10 @@ public class MyBatisConfig
 		final GlobalConfig gConfig = new GlobalConfig();
 		gConfig.setAuthor(Constant.GLOBAL_AUTHOR);
 		// 从系统参数中获取
-		// String projectPath = System.getProperty("user.dir");
-		// gConfig.setOutputDir(projectPath + "/src/main/java");
-		gConfig.setOutputDir(Constant.GLOBAL_OUTDIR);
+		final String projectPath = System.getProperty("user.dir");
+		gConfig.setOutputDir(projectPath + "/src/main/java");
+		// 自定义输出路径
+		// gConfig.setOutputDir(Constant.GLOBAL_OUTDIR);
 		// 是否覆盖同名文件，默认是false
 		gConfig.setFileOverride(CString.C_TRUE_P);
 		// 不需要ActiveRecord特性的请改为false
@@ -73,7 +73,7 @@ public class MyBatisConfig
 		gConfig.setServiceImplName(Constant.GLOBAL_SERVICEIMPLNAME);
 		gConfig.setControllerName(Constant.GLOBAL_CONTROLLERNAME);
 		// true 生成后 open explorer;false 不打开
-		// gConfig.setOpen(false);
+		gConfig.setOpen(CString.C_FALSE_P);
 		generator.setGlobalConfig(gConfig);
 
 		// 数据源配置
@@ -82,7 +82,7 @@ public class MyBatisConfig
 		dbConfig.setDbType(DbType.MYSQL);
 		// 数据库驱动
 		// 注意：MySQL5驱动为：com.mysql.jdbc.Driver；MySQL6驱动为：com.mysql.cj.jdbc.Driver
-		dbConfig.setDriverName(Constant.MYSQL_DRIVER_NAME);
+		dbConfig.setDriverName(Constant.MYSQL_DRIVER_NAME_SEX_BEFORE);
 		// 数据库地址
 		dbConfig.setUrl(Constant.MYSQL_URI);
 		dbConfig.setUsername(Constant.MYSQL_USERNAME);
@@ -91,7 +91,7 @@ public class MyBatisConfig
 
 		// 包配置
 		final PackageConfig pConfig = new PackageConfig();
-		// pConfig.setModuleName("模块名");
+		pConfig.setModuleName(Constant.PACKAGE_MODELNAME);
 		pConfig.setParent(Constant.PACKAGE_PARENT);
 		pConfig.setEntity(Constant.PACKAGE_ENTITY);
 		pConfig.setMapper(Constant.PACKAGE_MAPPER);
@@ -115,7 +115,8 @@ public class MyBatisConfig
 			}
 		};
 		final List<FileOutConfig> fConfigs = new ArrayList<>();
-		fConfigs.add(new FileOutConfig(Constant.TEMPLATE_FREEMARKER_PATH)
+		// 自定义mapper模板（默认在 templates路径下加载），以及自定义输出路径
+		fConfigs.add(new FileOutConfig(Constant.TEMPLATE_OF_MAPPER)
 		{
 
 			@Override
@@ -123,10 +124,12 @@ public class MyBatisConfig
 			{
 
 				// 自定义输出文件名 ， 如果 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化
-				return pConfig.getParent() + Constant.OUTFILE_XMLBASEURL + pConfig.getModuleName() + StringPool.SLASH
-						+ tableInfo.getEntityName() + Constant.OUTFILE_XMLSUFFIXNAME + StringPool.DOT_XML;
+				return projectPath + Constant.OUTFILE_BASEURL + pConfig.getModuleName() + CString.C_SLASH
+						+ tableInfo.getEntityName() + Constant.OUTFILE_MAPPER_SUFFIX + CString.C_DOT_XML;
 			}
 		});
+		// TODO 。。。 这儿还可以添加多个自定义配置内容，包括指定HTMl、JSP等的模板以及输出路径
+		// 配置是否创建文件
 		iConfig.setFileCreate(new IFileCreate()
 		{
 			@Override
@@ -161,9 +164,9 @@ public class MyBatisConfig
 		 * 策略配置
 		 */
 		StrategyConfig sConfig = new StrategyConfig();
-		// 表名生成策略
+		// 表名生成策略 （驼峰命名）
 		sConfig.setNaming(NamingStrategy.underline_to_camel);
-		// 列生成策略
+		// 列生成策略（驼峰命名）
 		sConfig.setColumnNaming(NamingStrategy.underline_to_camel);
 		// 自定义实体父类
 		// sConfig.setSuperEntityClass(Constant.Strategy_SuperEntity);
