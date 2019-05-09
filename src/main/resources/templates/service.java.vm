@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.plugins.Page;
  * Company:     b2c哎呦商城
  * Department:  研发一组
  * Title:       [aiyou — ${entity}模块]
- * Description: [${entity}类信息的controller层接口]
+ * Description: [${entity}类信息的service层接口]
  * Created on:  ${date}
  * Contacts:    [who.seek.me@java98k.vip]
  * @version     V1.1.0
