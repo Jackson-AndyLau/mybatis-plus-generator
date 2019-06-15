@@ -21,6 +21,7 @@ public class MybatisPlusGeneratorApplication
 
 	public static void main(String[] args)
 	{
+		
 		SpringApplication.run(MybatisPlusGeneratorApplication.class, args);
 	}
 

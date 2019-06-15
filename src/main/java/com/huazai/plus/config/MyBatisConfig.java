@@ -19,7 +19,9 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
+import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.FileType;
+import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.huazai.plus.common.CString;
 import com.huazai.plus.common.Constant;
@@ -79,6 +81,19 @@ public class MyBatisConfig
 		final DataSourceConfig dbConfig = new DataSourceConfig();
 		// 数据库类型
 		dbConfig.setDbType(DbType.MYSQL);
+		//自定义数据库表字段类型转换（可选）
+		/**
+		dbConfig.setTypeConvert(new MySqlTypeConvert() {
+			// globalConfig：全局配置，fieldType：字段类型
+			@Override
+			public IColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType)
+			{
+				// TODO Auto-generated method stub
+				return super.processTypeConvert(globalConfig, fieldType);
+			}
+			
+		});
+		**/
 		// 数据库驱动
 		// 注意：MySQL5驱动为：com.mysql.jdbc.Driver；MySQL6驱动为：com.mysql.cj.jdbc.Driver
 		dbConfig.setDriverName(Constant.MYSQL_DRIVER_NAME_SEX_BEFORE);
@@ -174,6 +189,8 @@ public class MyBatisConfig
 		//sConfig.setSuperEntityColumns("id");
 		// 实体是否使用 Lombok 模型
 		sConfig.setEntityLombokModel(CString.C_TRUE_P);
+		// 全局大写命名 ORACLE 注意
+		// sConfig.setCapitalMode(true);
 		// 自定义 mapper 父类
 		// sConfig.setSuperMapperClass(Constant.STRATEGY_SUPERMAPPER);
 		// 自定义 service 父类
@@ -187,10 +204,11 @@ public class MyBatisConfig
 		// controller 的映射风格
 		sConfig.setControllerMappingHyphenStyle(CString.C_TRUE_P);
 		// 自定义表前缀
-		// sConfig.setTablePrefix(pConfig.getModuleName() + "_");
 		sConfig.setTablePrefix(Constant.STRATEGY_TABLEPREFIX);
 		// 需要生成的表(多个表之前使用英文逗号隔开)
-		sConfig.setInclude(Constant.STRATEGY_INCLUDE);
+		sConfig.setInclude(Constant.STRATEGY_INCLUDE_COLLECTION);
+		//Boolean类型字段是否移除is前缀处理
+		sConfig.setEntityBooleanColumnRemoveIsPrefix(CString.C_TRUE_P);
 		generator.setStrategy(sConfig);
 
 		/**
