@@ -25,13 +25,13 @@ public class Constant
 	public static final String GLOBAL_CONTROLLERNAME = "%sController";
 
 	// MySQL 数据源配置相关
-	public static final String MYSQL_URI = "jdbc:mysql://***.***.***.***:3306/asp_dev?useUnicode=true&useSSL=false&characterEncoding=utf8";
+	public static final String MYSQL_URI = "jdbc:mysql://***.***.***.***:3306/aiyou_dev?useUnicode=true&useSSL=false&characterEncoding=utf8";
 	// mysql-connector-java 6或者以上的驱动，主要针对新版本
 	public static final String MYSQL_DRIVER_NAME_SEX_BEFORE = "com.mysql.cj.jdbc.Driver";
 	// mysql-connector-java 5或者以下的驱动，主要针对老版本
 	public static final String MYSQL_DRIVER_NAME_FIVE_LATER = "com.mysql.jdbc.Driver";
 	public static final String MYSQL_USERNAME = "*****";
-	public static final String MYSQL_PASSWORD = "********";
+	public static final String MYSQL_PASSWORD = "*********";
 
 	// 自定义配置相关，HTML模板路径、XML模板路径、JSP模板路径
 	public static final String TEMPLATE_OF_MAPPER = "/templates/mapper.xml.vm";
@@ -39,7 +39,7 @@ public class Constant
 	public static final String TEMPLATE_OF_JSP = "/templates/mapper.xml.vm";
 
 	// Package 包配置相关
-	public static final String PACKAGE_MODELNAME = "aiyou-manager";
+	public static final String PACKAGE_MODELNAME = "/";
 	public static final String PACKAGE_PARENT = "com.huazai.b2c.aiyou";
 	public static final String PACKAGE_ENTITY = "entity";
 	public static final String PACKAGE_MAPPER = "mapper";
