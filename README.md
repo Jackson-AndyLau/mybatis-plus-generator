@@ -197,3 +197,162 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
 ```
 
+<kbd>EmployeeController.java</kbd>
+```java
+package com.huazai.b2c.aiyou.controller;
+
+import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.huazai.b2c.aiyou.service.EmployeeService;
+import com.swcares.sqc.common.ResponseData;
+import com.huazai.b2c.aiyou.entity.Employee;
+import lombok.extern.slf4j.Slf4j;
+import io.swagger.annotations.*;
+
+/**
+ * Company:     b2c哎呦商城
+ * Department:  研发一组
+ * Title:       [aiyou — Employee模块]
+ * Description: [Employee类信息的controller层接口]
+ * Created on:  2019-06-15
+ * Contacts:    [who.seek.me@java98k.vip]
+ *
+ * @author huazai
+ * @version V1.1.0
+ */
+@Slf4j
+@RestController
+@Api(value = "/employee", description = "Employee 控制器")
+@RequestMapping("/employee")
+public class EmployeeController
+{
+
+	@Autowired
+	public EmployeeService employeeService;
+
+	/**
+	 * Description:[单表分页查询]
+	 * 
+	 * @param param
+	 *            [实体]
+	 * @param length
+	 *            [单页大小]
+	 * @param pageNo
+	 *            [页数]
+	 * @return ResponseData
+	 */
+	@GetMapping("/getEmployeeList")
+	@ApiOperation(value = "/getEmployeeList", notes = "获取分页列表")
+	public ResponseData getEmployeeList(@ApiParam(name = "Employee", value = "Employee 实体类") Employee param,
+			@RequestParam(name = "length") @ApiParam(name = "length", value = "页大小", defaultValue = "10") Integer length,
+			@RequestParam(name = "pageNo") @ApiParam(name = "pageNo", value = "页数", defaultValue = "1") Integer pageNo)
+	{
+		Page<Employee> pageEmployee;
+		try
+		{
+			Page<Employee> page = new Page<>(pageNo, length);
+			pageEmployee = employeeService.selectPageWithParam(page, param);
+		} catch (Exception e)
+		{
+			log.info("异常信息:{}", e.getMessage());
+			return ResponseData.error(500, e.getMessage());
+		}
+		return ResponseData.ok().put("List<Employee>", pageEmployee);
+	}
+
+	/**
+	 * Description:[通过id获取实体信息]
+	 * 
+	 * @param id
+	 *            [id]
+	 * @return ResponseData
+	 */
+	@GetMapping("/getEmployeeById")
+	@ApiOperation(value = "/getEmployeeById", notes = "通过id获取Employee")
+	public ResponseData getEmployeeById(
+			@RequestParam(name = "id") @ApiParam(name = "id", value = "EmployeeID", required = true) Long id)
+	{
+		Employee param;
+		try
+		{
+			param = employeeService.selectById(id);
+		} catch (Exception e)
+		{
+			log.info("异常信息:{}", e.getMessage());
+			return ResponseData.error(500, e.getMessage());
+		}
+		return ResponseData.ok().put("+Employee+", param);
+	}
+
+	/**
+	 * Description:[通过id删除实体信息]
+	 * 
+	 * @param id
+	 *            [id]
+	 * @return ResponseData
+	 */
+	@DeleteMapping("/deleteEmployeeById")
+	@ApiOperation(value = "/deleteEmployeeById", notes = "通过id删除Employee")
+	public ResponseData deleteEmployeeById(
+			@RequestParam(name = "id") @ApiParam(name = "id", value = "EmployeeID", required = true) Long id)
+	{
+		try
+		{
+			employeeService.deleteById(id);
+		} catch (Exception e)
+		{
+			log.info("异常信息:{}", e.getMessage());
+			return ResponseData.error(500, e.getMessage());
+		}
+		return ResponseData.ok();
+	}
+
+	/**
+	 * Description:[通过实体ID修改信息]
+	 * 
+	 * @param param
+	 *            [实体信息]
+	 * @return ResponseData
+	 */
+	@PutMapping("/updateEmployeeById")
+	@ApiOperation(value = "/updateEmployeeById", notes = "通过id更新Employee")
+	public ResponseData updateEmployeeById(@ApiParam(name = "Employee", value = "Employee 实体类") Employee param)
+	{
+		try
+		{
+			employeeService.updateById(param);
+		} catch (Exception e)
+		{
+			log.info("异常信息:{}", e.getMessage());
+			return ResponseData.error(500, e.getMessage());
+		}
+		return ResponseData.ok();
+	}
+
+	/**
+	 * Description:[通过实体添加新的数据]
+	 * 
+	 * @param param
+	 *            [实体信息]
+	 * @return ResponseData
+	 */
+	@PutMapping("/addEmployee")
+	@ApiOperation(value = "/addEmployee", notes = "添加Employee")
+	public ResponseData addEmployee(@ApiParam(name = "Employee", value = "Employee 实体类") Employee param)
+	{
+		try
+		{
+			employeeService.insert(param);
+		} catch (Exception e)
+		{
+			log.info("异常信息:{}", e.getMessage());
+			return ResponseData.error(500, e.getMessage());
+		}
+		return ResponseData.ok();
+	}
+}
+
+```
