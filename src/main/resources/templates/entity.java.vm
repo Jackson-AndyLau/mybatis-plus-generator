@@ -24,6 +24,7 @@ import lombok.experimental.Accessors;
  */
 #if(${entityLombokModel})
 @Data
+@ToString
 #if(${superEntityClass})
 @EqualsAndHashCode(callSuper = true)
 #else

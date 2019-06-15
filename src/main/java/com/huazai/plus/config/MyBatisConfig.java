@@ -19,7 +19,6 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.FileType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.huazai.plus.common.CString;
@@ -52,10 +51,10 @@ public class MyBatisConfig
 		final GlobalConfig gConfig = new GlobalConfig();
 		gConfig.setAuthor(Constant.GLOBAL_AUTHOR);
 		// 从系统参数中获取
-		final String projectPath = System.getProperty("user.dir");
-		gConfig.setOutputDir(projectPath + "/src/main/java");
+		//final String projectPath = System.getProperty("user.dir");
+		//gConfig.setOutputDir(projectPath + "/src/main/java");
 		// 自定义输出路径
-		// gConfig.setOutputDir(Constant.GLOBAL_OUTDIR);
+		gConfig.setOutputDir(Constant.GLOBAL_OUTDIR);
 		// 是否覆盖同名文件，默认是false
 		gConfig.setFileOverride(CString.C_TRUE_P);
 		// 不需要ActiveRecord特性的请改为false
@@ -73,7 +72,7 @@ public class MyBatisConfig
 		gConfig.setServiceImplName(Constant.GLOBAL_SERVICEIMPLNAME);
 		gConfig.setControllerName(Constant.GLOBAL_CONTROLLERNAME);
 		// true 生成后 open explorer;false 不打开
-		gConfig.setOpen(CString.C_FALSE_P);
+		gConfig.setOpen(CString.C_TRUE_P);
 		generator.setGlobalConfig(gConfig);
 
 		// 数据源配置
@@ -91,7 +90,7 @@ public class MyBatisConfig
 
 		// 包配置
 		final PackageConfig pConfig = new PackageConfig();
-		pConfig.setModuleName(Constant.PACKAGE_MODELNAME);
+		//pConfig.setModuleName(Constant.PACKAGE_MODELNAME);
 		pConfig.setParent(Constant.PACKAGE_PARENT);
 		pConfig.setEntity(Constant.PACKAGE_ENTITY);
 		pConfig.setMapper(Constant.PACKAGE_MAPPER);
@@ -116,7 +115,7 @@ public class MyBatisConfig
 		};
 		final List<FileOutConfig> fConfigs = new ArrayList<>();
 		// 自定义mapper模板（默认在 templates路径下加载），以及自定义输出路径
-		fConfigs.add(new FileOutConfig(Constant.TEMPLATE_OF_MAPPER)
+		/**fConfigs.add(new FileOutConfig(Constant.TEMPLATE_OF_MAPPER)
 		{
 
 			@Override
@@ -128,6 +127,7 @@ public class MyBatisConfig
 						+ tableInfo.getEntityName() + Constant.OUTFILE_MAPPER_SUFFIX + CString.C_DOT_XML;
 			}
 		});
+		**/
 		// TODO 。。。 这儿还可以添加多个自定义配置内容，包括指定HTMl、JSP等的模板以及输出路径
 		// 配置是否创建文件
 		iConfig.setFileCreate(new IFileCreate()
@@ -171,7 +171,7 @@ public class MyBatisConfig
 		// 自定义实体父类
 		// sConfig.setSuperEntityClass(Constant.Strategy_SuperEntity);
 		// 自定义公共字段
-		sConfig.setSuperEntityColumns("id");
+		//sConfig.setSuperEntityColumns("id");
 		// 实体是否使用 Lombok 模型
 		sConfig.setEntityLombokModel(CString.C_TRUE_P);
 		// 自定义 mapper 父类
@@ -196,8 +196,7 @@ public class MyBatisConfig
 		/**
 		 * 配置模板引擎
 		 */
-		// final FreemarkerTemplateEngine fTemplateEngine = new
-		// FreemarkerTemplateEngine();
+		// final FreemarkerTemplateEngine fTemplateEngine = new FreemarkerTemplateEngine();
 		// generator.setTemplateEngine(fTemplateEngine);
 
 		/**
