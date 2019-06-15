@@ -19,9 +19,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
-import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.FileType;
-import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.huazai.plus.common.CString;
 import com.huazai.plus.common.Constant;
@@ -184,7 +182,7 @@ public class MyBatisConfig
 		// 列生成策略（驼峰命名）
 		sConfig.setColumnNaming(NamingStrategy.underline_to_camel);
 		// 自定义实体父类
-		// sConfig.setSuperEntityClass(Constant.Strategy_SuperEntity);
+		// sConfig.setSuperEntityClass(Constant.STRATEGY_SUPERENTITY);
 		// 自定义公共字段
 		//sConfig.setSuperEntityColumns("id");
 		// 实体是否使用 Lombok 模型
