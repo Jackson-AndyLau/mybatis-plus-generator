@@ -75,10 +75,10 @@ public class MyBatisConfig
 		gConfig.setOpen(CString.C_TRUE_P);
 		generator.setGlobalConfig(gConfig);
 
-		// 数据源配置
+		// 数据源配置 修改数据源配置
 		final DataSourceConfig dbConfig = new DataSourceConfig();
 		// 数据库类型
-		dbConfig.setDbType(DbType.MYSQL);
+		dbConfig.setDbType(DbType.POSTGRE_SQL);
 		//自定义数据库表字段类型转换（可选）
 		/**
 		dbConfig.setTypeConvert(new MySqlTypeConvert() {
@@ -94,11 +94,11 @@ public class MyBatisConfig
 		**/
 		// 数据库驱动
 		// 注意：MySQL5驱动为：com.mysql.jdbc.Driver；MySQL6驱动为：com.mysql.cj.jdbc.Driver
-		dbConfig.setDriverName(Constant.MYSQL_DRIVER_NAME_SEX_BEFORE);
+		dbConfig.setDriverName(Constant.POSTGREPSQL_DRIVER_NAME_SEX_BEFORE);
 		// 数据库地址
-		dbConfig.setUrl(Constant.MYSQL_URI);
-		dbConfig.setUsername(Constant.MYSQL_USERNAME);
-		dbConfig.setPassword(Constant.MYSQL_PASSWORD);
+		dbConfig.setUrl(Constant.POSTGREPSQL_URI);
+		dbConfig.setUsername(Constant.POSTGREPSQL_USERNAME);
+		dbConfig.setPassword(Constant.POSTGREPSQL_PASSWORD);
 		generator.setDataSource(dbConfig);
 
 		// 包配置
@@ -204,7 +204,7 @@ public class MyBatisConfig
 		// 自定义表前缀
 		sConfig.setTablePrefix(Constant.STRATEGY_TABLEPREFIX);
 		// 需要生成的表(多个表之前使用英文逗号隔开)
-		sConfig.setInclude(Constant.STRATEGY_INCLUDE_COLLECTION);
+		sConfig.setInclude(Constant.STRATEGY_INCLUDE); // 修改是否多表
 		//Boolean类型字段是否移除is前缀处理
 		sConfig.setEntityBooleanColumnRemoveIsPrefix(CString.C_TRUE_P);
 		generator.setStrategy(sConfig);
