@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 
  * @description
  *              <li>主项目启动类
+ *              <li>启动成功后，访问地址进行生成->
+ *              http://localhost:8083/mybatis/plus/generation
  * @class_name MybatisPlusGeneratorApplication
  * @package com.huazai.plus
  * @created 2017年5月1日 下午6:01:45
@@ -16,12 +18,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author HuaZai
  */
 @SpringBootApplication
-public class MybatisPlusGeneratorApplication
-{
+public class MybatisPlusGeneratorApplication {
 
-	public static void main(String[] args)
-	{
-		
+	public static void main(String[] args) {
+
 		SpringApplication.run(MybatisPlusGeneratorApplication.class, args);
 	}
 
