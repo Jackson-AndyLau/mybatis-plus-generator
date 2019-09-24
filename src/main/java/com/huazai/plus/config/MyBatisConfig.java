@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -55,6 +56,8 @@ public class MyBatisConfig
 		//gConfig.setOutputDir(projectPath + "/src/main/java");
 		// 自定义输出路径
 		gConfig.setOutputDir(Constant.GLOBAL_OUTDIR);
+		// 主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+		gConfig.setIdType(IdType.AUTO);
 		// 是否覆盖同名文件，默认是false
 		gConfig.setFileOverride(CString.C_TRUE_P);
 		// 不需要ActiveRecord特性的请改为false
@@ -187,6 +190,12 @@ public class MyBatisConfig
 		//sConfig.setSuperEntityColumns("id");
 		// 实体是否使用 Lombok 模型
 		sConfig.setEntityLombokModel(CString.C_TRUE_P);
+		sConfig.setEntityBuilderModel(CString.C_TRUE_P);
+		//Boolean类型字段是否移除is前缀处理
+		sConfig.setEntityBooleanColumnRemoveIsPrefix(CString.C_TRUE_P);
+		// 开启字段注解
+		sConfig.setEntityTableFieldAnnotationEnable(CString.C_TRUE_P);
+		sConfig.setEntitySerialVersionUID(CString.C_TRUE_P);
 		// 全局大写命名 ORACLE 注意
 		// sConfig.setCapitalMode(true);
 		// 自定义 mapper 父类
@@ -204,9 +213,7 @@ public class MyBatisConfig
 		// 自定义表前缀
 		sConfig.setTablePrefix(Constant.STRATEGY_TABLEPREFIX);
 		// 需要生成的表(多个表之前使用英文逗号隔开)
-		sConfig.setInclude(Constant.STRATEGY_INCLUDE); // 修改是否多表
-		//Boolean类型字段是否移除is前缀处理
-		sConfig.setEntityBooleanColumnRemoveIsPrefix(CString.C_TRUE_P);
+		sConfig.setInclude(Constant.STRATEGY_INCLUDE_COLLECTION); // 修改是否多表
 		generator.setStrategy(sConfig);
 
 		/**
