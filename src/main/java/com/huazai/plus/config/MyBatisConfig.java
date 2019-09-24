@@ -56,7 +56,7 @@ public class MyBatisConfig
 		//gConfig.setOutputDir(projectPath + "/src/main/java");
 		// 自定义输出路径
 		gConfig.setOutputDir(Constant.GLOBAL_OUTDIR);
-		// 主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+		// 主键类型  0:"数据库ID自增",  1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
 		gConfig.setIdType(IdType.AUTO);
 		// 是否覆盖同名文件，默认是false
 		gConfig.setFileOverride(CString.C_TRUE_P);
