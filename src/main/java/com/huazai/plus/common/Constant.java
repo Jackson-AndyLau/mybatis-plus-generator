@@ -16,7 +16,7 @@ public class Constant
 {
 
 	// MyBatis-Config 全局配置相关
-	public static final String GLOBAL_AUTHOR = "huazai";  // 修改作者
+	public static final String GLOBAL_AUTHOR = "zhaozhenhua";  // 修改作者
 	public static final String GLOBAL_OUTDIR = "D:/";
 	public static final String GLOBAL_MAPPERNAME = "%sMapper";
 	public static final String GLOBAL_XMLNAME = "%sMapper";
@@ -72,13 +72,13 @@ public class Constant
 	public static final String STRATEGY_SUPERSERVICEIMPL = "com.huazai.b2c.aiyou.base.service.impl.BaseServiceImpl";
 	public static final String STRATEGY_SUPERCONTROLLER = "com.huazai.b2c.aiyou.base.controller.BaseController";
 	// 单个前缀 修改生成的表
-	public static final String STRATEGY_TABLEPREFIX = "b_";
+	public static final String STRATEGY_TABLEPREFIX = "o_";
 	// 多个前缀
 	public static final String[] STRATEGY_TABLEPREFIX_COLLECTION = new String[] { "b2c_","aiyou_" };
 	// 单表
-	public static final String STRATEGY_INCLUDE = "b_dict_info";
+	public static final String STRATEGY_INCLUDE = "b2c_dict_type";
 	// 多表
-	public static final String[] STRATEGY_INCLUDE_COLLECTION = new String[] {"aiyou_employee","department"};
+	public static final String[] STRATEGY_INCLUDE_COLLECTION = new String[] {"b2c_dict_type","b2c_dict_value"};
 
 	// 样式表
 	public static final String RESULT_SUCCEED = "<div style='text-align:center;margin:0 auto;border:1px solid #FFF;width:300px;height:100px'><h1> <font color='red'>Successfully</font></h1></div>";
