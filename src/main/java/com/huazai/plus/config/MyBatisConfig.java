@@ -194,7 +194,7 @@ public class MyBatisConfig
 		//Boolean类型字段是否移除is前缀处理
 		sConfig.setEntityBooleanColumnRemoveIsPrefix(CString.C_TRUE_P);
 		// 开启字段注解
-		sConfig.setEntityTableFieldAnnotationEnable(CString.C_TRUE_P);
+		sConfig.setEntityTableFieldAnnotationEnable(true);
 		sConfig.setEntitySerialVersionUID(CString.C_TRUE_P);
 		// 全局大写命名 ORACLE 注意
 		// sConfig.setCapitalMode(true);
