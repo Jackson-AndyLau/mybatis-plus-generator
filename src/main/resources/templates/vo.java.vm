@@ -1,8 +1,8 @@
 package ${package.Entity};
 
-#foreach($pkg in ${table.importPackages})
-import ${pkg};
-#end
+import com.trydo.platform.commons.base.BaseVo;
+import java.util.Date;
+import java.io.Serializable;
 #if(${entityLombokModel})
 
 import lombok.Data;
@@ -16,8 +16,8 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Company:     b2c哎呦商城
  * Department:  研发一组
- * Title:       [smart-customer-hotline — ${entity}Entity 模块]
- * Description: [${entity}Entity 实体类]
+ * Title:       [smart-customer-hotline — ${entity}VO 模块]
+ * Description: [${entity}VO 实体类]
  * Created on:  ${date}
  * Contacts:    [who.seek.me@java98k.vip]
  * @version     V1.1.0
@@ -35,14 +35,13 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 #end
 #if(${table.convert})
-@TableName("${table.name}")
 #end
 #if(${superEntityClass})
-public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
+public class ${entity}VO extends BaseVo implements Serializable  {
 #elseif(${activeRecord})
-public class ${entity} extends Model<${entity}> {
+public class ${entity}VO extends BaseVo implements Serializable  {
 #else
-public class ${entity} implements Serializable {
+public class ${entity}VO implements Serializable {
 #end
 
     private static final long serialVersionUID = 1L;
@@ -60,27 +59,21 @@ public class ${entity} implements Serializable {
 #if(${field.keyFlag})
 ## 主键
 #if(${field.keyIdentityFlag})
-    @TableId(value = "${field.name}", type = IdType.AUTO)
     @ApiModelProperty(value = "${field.comment}")
 #elseif(!$null.isNull(${idType}) && "$!idType" != "")
-    @TableId(value = "${field.name}", type = IdType.${idType})
     @ApiModelProperty(value = "${field.comment}")
 #elseif(${field.convert})
-    @TableId("${field.name}")
     @ApiModelProperty(value = "${field.comment}")
 #end
 ## 普通字段
 #elseif(${field.fill})
 ## -----   存在字段填充设置   -----
 #if(${field.convert})
-    @TableField(value = "${field.name}", fill = FieldFill.${field.fill})
     @ApiModelProperty(value = "${field.comment}")
 #else
-    @TableField(fill = FieldFill.${field.fill})
     @ApiModelProperty(value = "${field.comment}")
 #end
 #elseif(${field.convert})
-    @TableField("${field.name}")
     @ApiModelProperty(value = "${field.comment}")
 #end
 ## 乐观锁注解
@@ -108,7 +101,7 @@ public class ${entity} implements Serializable {
     }
 
 #if(${entityBuilderModel})
-    public ${entity}Entity set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
+    public ${entity}VO set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
 #else
     public void set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
 #end
@@ -126,21 +119,11 @@ public class ${entity} implements Serializable {
 
 #end
 #end
-#if(${activeRecord})
-    @Override
-    protected Serializable pkVal() {
-#if(${keyPropertyName})
-        return this.${keyPropertyName};
-#else
-        return null;
-#end
-    }
 
-#end
 #if(!${entityLombokModel})
     @Override
     public String toString() {
-        return "${entity}Entity{" +
+        return "${entity}VO{" +
 #foreach($field in ${table.fields})
 #if($!{velocityCount}==1)
         "${field.propertyName}=" + ${field.propertyName} +

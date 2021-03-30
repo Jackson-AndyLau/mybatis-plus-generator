@@ -1,7 +1,11 @@
 package ${package.Controller};
 
 import org.springframework.web.bind.annotation.*;
+import com.trydo.platform.commons.result.AppException;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import com.sw.qc.declare.vo.${entity}VO;
+import com.sw.qc.declare.dto.${entity}DTO;
 #if(${restControllerStyle})
 import org.springframework.web.bind.annotation.RestController;
 #else
@@ -11,9 +15,8 @@ import org.springframework.stereotype.Controller;
 import ${superControllerClassPackage};
 #end
 import org.springframework.beans.factory.annotation.Autowired;
-import com.baomidou.mybatisplus.plugins.Page;
 import ${package.Service}.${table.serviceName};
-import com.swcares.sqc.common.ResponseData;
+import com.trydo.platform.commons.result.JSONResult;
 import ${package.Entity}.${entity};
 import lombok.extern.slf4j.Slf4j;
 import io.swagger.annotations.*;
@@ -23,8 +26,8 @@ import io.swagger.annotations.*;
 /**
  * Company:     b2c哎呦商城
  * Department:  研发一组
- * Title:       [aiyou — ${entity}模块]
- * Description: [${entity}类信息的controller层接口]
+ * Title:       [smart-customer-hotline — ${entity} 模块]
+ * Description: [${entity} 类信息的controller层接口]
  * Created on:  ${date}
  * Contacts:    [who.seek.me@java98k.vip]
  * @version     V1.1.0
@@ -36,7 +39,7 @@ import io.swagger.annotations.*;
 #else
 @Controller
 #end
-@Api(value="#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end", description="${entity} 控制器")
+@Api(value="${entity}Entity 控制器")
 @RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
 #if(${superControllerClass})
 public class ${table.controllerName} extends ${superControllerClass} {
@@ -45,97 +48,102 @@ public class ${table.controllerName} {
 #end
 
     @Autowired
-    public ${table.serviceName} ${table.entityPath}Service;
+    private ${table.serviceName} ${table.entityPath}Service;
 
     /**
      * Description:[单表分页查询]
-     * @param param  [实体]
-     * @param length  [单页大小]
-     * @param pageNo  [页数]
-     * @return  ResponseData
+     * @param ${table.entityPath}DTO    [实体]
+     * @return  JSONResult
+     * @date ${date}
+     * @author      ${author}
      */
     @GetMapping("/get${entity}List")
     @ApiOperation(value="/get${entity}List", notes="获取分页列表")
-    public ResponseData get${entity}List(@ApiParam(name="${entity}",value="${entity} 实体类")${entity} param ,
-                @RequestParam(name = "length") @ApiParam(name="length",value="页大小",defaultValue = "10")Integer length,
-                @RequestParam(name = "pageNo") @ApiParam(name="pageNo",value="页数",defaultValue = "1")Integer pageNo) {
-    	Page<${entity}> page${entity};
-    	try {
-    		Page<${entity}> page=new Page<>(pageNo,length);
-    		page${entity} = ${table.entityPath}Service.selectPageWithParam(page, param);
-    	}catch (Exception e){
-    		log.info("异常信息:{}",e.getMessage());
-    		return ResponseData.error(500,e.getMessage());
-    	}
-    	return ResponseData.ok().put("List<${entity}>", page${entity});
+    public JSONResult get${entity}List(@RequestBody @ApiParam(name="${entity}DTO",value="${entity}DTO 实体类")${entity}DTO ${table.entityPath}DTO) {
+        Page page;
+        try {
+            page = this.${table.entityPath}Service.selectPageWith${entity}VO(${table.entityPath}DTO);
+        } catch (AppException e) {
+            log.info("异常信息:{}", e);
+            return JSONResult.failure(500, e.getMessage());
+        }
+        return JSONResult.success(page);
     }
 
     /**
       * Description:[通过id获取实体信息]
       * @param id  [id]
-      * @return  ResponseData
+      * @return  JSONResult
+      * @date ${date}
+      * @author ${author}
       */
     @GetMapping("/get${entity}ById")
     @ApiOperation(value="/get${entity}ById", notes="通过id获取${entity}")
-    public ResponseData get${entity}ById( @RequestParam(name = "id") @ApiParam(name="id",value="${entity}ID",required=true)Long id) {
-        ${entity} param;
+    public JSONResult get${entity}ById( @RequestParam(name = "id") @ApiParam(name="id",value="${entity}ID",required=true)String id) {
+        ${entity} ${table.entityPath};
         try {
-                param= ${table.entityPath}Service.selectById(id);
-        }catch (Exception e) {
-        	log.info("异常信息:{}",e.getMessage());
-        	return ResponseData.error(500,e.getMessage());
+                ${table.entityPath} = this.${table.entityPath}Service.select${entity}ById(id);
+        }catch (AppException e) {
+        	log.info("异常信息:{}",e);
+            return JSONResult.failure(500, e.getMessage());
         }
-        return ResponseData.ok().put("+${entity}+", param);
+        return JSONResult.success(${table.entityPath});
     }
 
     /**
     * Description:[通过id删除实体信息]
     * @param id  [id]
-    * @return  ResponseData
+    * @return  JSONResult
+    * @date ${date}
+    * @author ${author}
     */
     @DeleteMapping("/delete${entity}ById")
     @ApiOperation(value="/delete${entity}ById", notes="通过id删除${entity}")
-    public ResponseData delete${entity}ById( @RequestParam(name = "id") @ApiParam(name="id",value="${entity}ID",required=true)Long id) {
+    public JSONResult delete${entity}ById( @RequestParam(name = "id") @ApiParam(name="id",value="${entity}ID",required=true)String id) {
     	try{
-            ${table.entityPath}Service.deleteById(id);
-    	}catch (Exception e) {
-		    log.info("异常信息:{}",e.getMessage());
-		    return ResponseData.error(500,e.getMessage());
+            this.${table.entityPath}Service.delete${entity}ById(id);
+    	}catch (AppException e) {
+		    log.info("异常信息:{}",e);
+            return JSONResult.failure(500, e.getMessage());
     	}
-    	return ResponseData.ok();
+    	return JSONResult.success();
     }
 
     /**
      * Description:[通过实体ID修改信息]
-     * @param param  [实体信息]
-     * @return  ResponseData
+     * @param ${table.entityPath}  [实体信息]
+     * @return  JSONResult
+     * @date ${date}
+     * @author ${author}
      */
     @PutMapping("/update${entity}ById")
     @ApiOperation(value="/update${entity}ById", notes="通过id更新${entity}")
-    public ResponseData update${entity}ById(@ApiParam(name="${entity}",value="${entity} 实体类")${entity} param) {
+    public JSONResult update${entity}ById(@RequestBody @ApiParam(name="${entity}",value="${entity} 实体类")${entity} ${table.entityPath}) {
     	try{
-            ${table.entityPath}Service.updateById(param);
-    	}catch (Exception e) {
-		    log.info("异常信息:{}",e.getMessage());
-		    return ResponseData.error(500,e.getMessage());
+            this.${table.entityPath}Service.update${entity}ById(${table.entityPath});
+    	}catch (AppException e) {
+		    log.info("异常信息:{}",e);
+            return JSONResult.failure(500, e.getMessage());
     	}
-    	return ResponseData.ok();
+    	return JSONResult.success();
     }
 
     /**
     * Description:[通过实体添加新的数据]
-    * @param param  [实体信息]
-    * @return  ResponseData
+    * @param ${table.entityPath}  [实体信息]
+    * @return  JSONResult
+    * @date ${date}
+    * @author ${author}
     */
 	@PutMapping("/add${entity}")
     @ApiOperation(value="/add${entity}", notes="添加${entity}")
-    public ResponseData add${entity}(@ApiParam(name="${entity}",value="${entity} 实体类")${entity} param) {
+    public JSONResult add${entity}(@RequestBody @ApiParam(name="${entity}",value="${entity} 实体类")${entity} ${table.entityPath}) {
     	try{
-            ${table.entityPath}Service.insert(param);
-    	}catch (Exception e) {
-		    log.info("异常信息:{}",e.getMessage());
-		    return ResponseData.error(500,e.getMessage());
+            this.${table.entityPath}Service.insert${entity}(${table.entityPath});
+    	}catch (AppException e) {
+		    log.info("异常信息:{}",e);
+            return JSONResult.failure(500, e.getMessage());
     	}
-    	return ResponseData.ok();
+    	return JSONResult.success();
     }
 }

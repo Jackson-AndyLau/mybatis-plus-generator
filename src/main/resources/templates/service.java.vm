@@ -1,19 +1,73 @@
 package ${package.Service};
 
 import ${package.Entity}.${entity};
-import ${superServiceClassPackage};
-import com.baomidou.mybatisplus.plugins.Page;
+import com.sw.qc.declare.vo.${entity}VO;
+import com.sw.qc.declare.dto.${entity}DTO;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.trydo.platform.commons.result.AppException;
 
 /**
  * Company:     b2c哎呦商城
  * Department:  研发一组
- * Title:       [aiyou — ${entity}模块]
- * Description: [${entity}类信息的service层接口]
+ * Title:       [smart-customer-hotline — ${entity} 模块]
+ * Description: [${entity} 类信息的Service层接口]
  * Created on:  ${date}
  * Contacts:    [who.seek.me@java98k.vip]
  * @version     V1.1.0
  * @author      ${author}
  */
 public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
-		Page<${entity}> selectPageWithParam(Page<${entity}> page,${entity} param);
+
+	    /**
+	     * Description:[单表分页查询]
+	     *
+	     * @param ${table.entityPath}DTO    [实体]
+		 * @throws AppException
+	     * @return Page<${entity}VO>
+         * @date ${date}
+ 		 * @author      ${author}
+	     */
+		Page selectPageWith${entity}VO(${entity}DTO ${table.entityPath}DTO) throws AppException;
+		
+	    /**
+	     * Description:[通过id获取实体信息]
+	     *
+	     * @param id [id]
+		 * @throws AppException
+	     * @return ${entity}
+         * @date ${date}
+ 		 * @author      ${author}
+	     */
+		${entity} select${entity}ById(String id) throws AppException;
+
+	    /**
+	     * Description:[通过id删除实体信息]
+	     *
+	     * @param id [id]
+		 * @throws AppException
+         * @date ${date}
+ 		 * @author      ${author}
+	     */
+    	void delete${entity}ById(String id) throws AppException;
+
+	    /**
+	     * Description:[通过实体添加新的数据]
+	     *
+	     * @param ${table.entityPath} [实体信息]
+		 * @throws AppException
+         * @date ${date}
+ 		 * @author      ${author}
+	     */
+        void insert${entity}(${entity} ${table.entityPath}) throws AppException;
+
+	    /**
+	     * Description:[通过实体ID修改信息]
+	     *
+	     * @param ${table.entityPath} [实体信息]
+		 * @throws AppException
+         * @date ${date}
+ 		 * @author      ${author}
+	     */
+	    void update${entity}ById(${entity} ${table.entityPath}) throws AppException;
 }

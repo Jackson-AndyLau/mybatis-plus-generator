@@ -35,4 +35,11 @@
         ${table.fieldNames}
     </sql>
 #end
+
+    <select id="selectPageWith${entity}DTO" resultType="com.sw.qc.declare.vo.${entity}VO">
+        select
+        <include refid="Base_Column_List"/>
+        from ${table.name}
+    </select>
+
 </mapper>

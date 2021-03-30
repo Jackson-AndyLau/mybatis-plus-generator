@@ -5,14 +5,20 @@ import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.trydo.platform.commons.result.AppException;
+
+import com.sw.qc.declare.vo.${entity}VO;
+import com.sw.qc.declare.dto.${entity}DTO;
+
+import java.util.List;
 
 /**
  * Company:     b2c哎呦商城
  * Department:  研发一组
- * Title:       [aiyou — ${entity}模块]
- * Description: [${entity}类信息的service层实现类]
+ * Title:       [smart-customer-hotline — ${entity}Entity 模块]
+ * Description: [${entity}Entity 类信息的ServiceImpl实现层]
  * Created on:  ${date}
  * Contacts:    [who.seek.me@java98k.vip]
  * @version     V1.1.0
@@ -21,10 +27,38 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 @Service
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
 
+    @Autowired
+    private ${table.mapperName} ${table.entityPath}Mapper;
+
     @Override
-    public Page<${entity}> selectPageWithParam(Page<${entity}> page,${entity} param){
-		EntityWrapper<${entity}> entityWrapper = new EntityWrapper<>(param);
-		Page<${entity}> page${entity} = selectPage(page,entityWrapper);
-		return  page${entity};
+    public Page selectPageWith${entity}VO(${entity}DTO ${table.entityPath}DTO) throws AppException{
+		Page page = new Page(${table.entityPath}DTO.getCurrent(),${table.entityPath}DTO.getSize());
+		List<${entity}VO> ${table.entityPath}VOList = ${table.entityPath}Mapper.selectPageWith${entity}DTO(page,${table.entityPath}DTO);
+		page.setRecords(${table.entityPath}VOList);
+		return page;
+    }
+    
+    @Override
+    public ${entity} select${entity}ById(String id) throws AppException{
+
+        return this.${table.entityPath}Mapper.selectById(id);
+    }
+
+    @Override
+    public void delete${entity}ById(String id) throws AppException{
+
+        this.${table.entityPath}Mapper.deleteById(id);
+    }
+
+    @Override
+    public void insert${entity}(${entity} ${table.entityPath}) throws AppException{
+
+        this.${table.entityPath}Mapper.insert(${table.entityPath});
+    }
+    
+    @Override
+    public void update${entity}ById(${entity} ${table.entityPath}) throws AppException{
+
+        this.${table.entityPath}Mapper.updateById(${table.entityPath});
     }
 }
