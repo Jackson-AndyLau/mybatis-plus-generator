@@ -16,22 +16,24 @@ public class Constant
 {
 
 	// MyBatis-Config 全局配置相关
-	public static final String GLOBAL_AUTHOR = "zhaozhenhua";  // 修改作者
+	// 修改作者
+	public static final String GLOBAL_AUTHOR = "HuaZai";
 	public static final String GLOBAL_OUTDIR = "D:/";
 	public static final String GLOBAL_MAPPERNAME = "%sMapper";
 	public static final String GLOBAL_XMLNAME = "%sMapper";
 	public static final String GLOBAL_SERVICENAME = "%sService";
 	public static final String GLOBAL_SERVICEIMPLNAME = "%sServiceImpl";
 	public static final String GLOBAL_CONTROLLERNAME = "%sController";
+	public static final String GLOBAL_ENTITYERNAME = "%sEntity";
 
 	// MySQL 数据源配置相关	 修改数据源
-	public static final String MYSQL_URI = "jdbc:mysql://localhost:3306/aiyou_mybatis?useUnicode=true&useSSL=false&characterEncoding=utf8";
+	public static final String MYSQL_URI = "jdbc:mysql://localhost:3306/b2c_aiyou?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai";
 	// mysql-connector-java 6或者以上的驱动，主要针对新版本
 	public static final String MYSQL_DRIVER_NAME_SEX_BEFORE = "com.mysql.cj.jdbc.Driver";
 	// mysql-connector-java 5或者以下的驱动，主要针对老版本
 	public static final String MYSQL_DRIVER_NAME_FIVE_LATER = "com.mysql.jdbc.Driver";
 	public static final String MYSQL_USERNAME = "****";
-	public static final String MYSQL_PASSWORD = "********";
+	public static final String MYSQL_PASSWORD = "******";
 	
 	// Oracle 数据源配置相关
 	public static final String ORACLE_URI = "jdbc:oracle:thin:@localhost:1521:orcl/aiyou_mybatis?useUnicode=true&useSSL=false&characterEncoding=utf8";
@@ -51,10 +53,19 @@ public class Constant
 	public static final String TEMPLATE_OF_MAPPER = "/templates/mapper.xml.vm";
 	public static final String TEMPLATE_OF_HTML_LIST = "/templates/mapper.xml.vm";
 	public static final String TEMPLATE_OF_JSP = "/templates/mapper.xml.vm";
+	
+	// 自定义Entity模板
+	public static final String TEMPLATE_OF_ENTITY = "/templates/entity.java.vm";
+	
+	// 自定义DTO模板
+	public static final String TEMPLATE_OF_DTO = "/templates/dto.java.vm";
+	
+	// 自定义VO模板
+	public static final String TEMPLATE_OF_VO = "/templates/vo.java.vm";
 
 	// Package 包配置相关	修改配置包
 	public static final String PACKAGE_MODELNAME = "/";
-	public static final String PACKAGE_PARENT = "com.huazai.b2c.aiyou";
+	public static final String PACKAGE_PARENT = "com.sw.qc.declare";
 	public static final String PACKAGE_ENTITY = "entity";
 	public static final String PACKAGE_MAPPER = "mapper";
 	public static final String PACKAGE_SERVICE = "service";
@@ -63,6 +74,8 @@ public class Constant
 
 	// OutFile 配置
 	public static final String OUTFILE_BASEURL = "/src/main/resources/mapper/";
+	public static final String PACKAGE_DTO = "/dto";
+	public static final String PACKAGE_VO = "/vo";
 	public static final String OUTFILE_MAPPER_SUFFIX = "Mapper";
 
 	// 策略配置
@@ -72,16 +85,21 @@ public class Constant
 	public static final String STRATEGY_SUPERSERVICEIMPL = "com.huazai.b2c.aiyou.base.service.impl.BaseServiceImpl";
 	public static final String STRATEGY_SUPERCONTROLLER = "com.huazai.b2c.aiyou.base.controller.BaseController";
 	// 单个前缀 修改生成的表
-	public static final String STRATEGY_TABLEPREFIX = "o_";
+	public static final String STRATEGY_TABLEPREFIX = "ds_";
 	// 多个前缀
 	public static final String[] STRATEGY_TABLEPREFIX_COLLECTION = new String[] { "b2c_","aiyou_" };
 	// 单表
-	public static final String STRATEGY_INCLUDE = "b2c_dict_type";
+	public static final String STRATEGY_INCLUDE = "a_operate_log";
 	// 多表
-	public static final String[] STRATEGY_INCLUDE_COLLECTION = new String[] {"b2c_dict_type","b2c_dict_value"};
+	public static final String[] STRATEGY_INCLUDE_COLLECTION = new String[] {"aiyou_user"};
 
 	// 样式表
 	public static final String RESULT_SUCCEED = "<div style='text-align:center;margin:0 auto;border:1px solid #FFF;width:300px;height:100px'><h1> <font color='red'>Successfully</font></h1></div>";
 	public static final String RESULT_FAILED = "<div style='text-align:center;margin:0 auto;border:1px solid #FFF;width:300px;height:100px'><h1> <font color='red'>Successfully</font></h1></div>";
+	
+	// 用户信息
+	public static final String HEADER_TOKEN = "HEADER_TOKEN";
+	
+	
 
 }

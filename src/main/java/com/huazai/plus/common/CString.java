@@ -20,6 +20,8 @@ public interface CString
 	// ---------------------------------------------------------------- file suffix
 	String C_DOT_CLASS = ".class";
 	String C_DOT_JAVA = ".java";
+	String C_DOT_DTO_JAVA = "DTO.java";
+	String C_DOT_VO_JAVA = "VO.java";
 	String C_DOT_XML = ".xml";
 	String C_DOT_JSP = ".jsp";
 	String C_DOT_HTML = ".html";

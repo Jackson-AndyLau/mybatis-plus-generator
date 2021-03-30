@@ -20,6 +20,8 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.FileType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.huazai.plus.common.CString;
@@ -74,14 +76,17 @@ public class MyBatisConfig
 		gConfig.setServiceName(Constant.GLOBAL_SERVICENAME);
 		gConfig.setServiceImplName(Constant.GLOBAL_SERVICEIMPLNAME);
 		gConfig.setControllerName(Constant.GLOBAL_CONTROLLERNAME);
+		gConfig.setEntityName(Constant.GLOBAL_ENTITYERNAME);
 		// true 生成后 open explorer;false 不打开
 		gConfig.setOpen(CString.C_TRUE_P);
+		// 时间策略
+		gConfig.setDateType(DateType.ONLY_DATE);
 		generator.setGlobalConfig(gConfig);
 
 		// 数据源配置 修改数据源配置
 		final DataSourceConfig dbConfig = new DataSourceConfig();
 		// 数据库类型
-		dbConfig.setDbType(DbType.POSTGRE_SQL);
+		dbConfig.setDbType(DbType.MYSQL);
 		//自定义数据库表字段类型转换（可选）
 		/**
 		dbConfig.setTypeConvert(new MySqlTypeConvert() {
@@ -97,11 +102,11 @@ public class MyBatisConfig
 		**/
 		// 数据库驱动
 		// 注意：MySQL5驱动为：com.mysql.jdbc.Driver；MySQL6驱动为：com.mysql.cj.jdbc.Driver
-		dbConfig.setDriverName(Constant.POSTGREPSQL_DRIVER_NAME_SEX_BEFORE);
+		dbConfig.setDriverName(Constant.MYSQL_DRIVER_NAME_SEX_BEFORE);
 		// 数据库地址
-		dbConfig.setUrl(Constant.POSTGREPSQL_URI);
-		dbConfig.setUsername(Constant.POSTGREPSQL_USERNAME);
-		dbConfig.setPassword(Constant.POSTGREPSQL_PASSWORD);
+		dbConfig.setUrl(Constant.MYSQL_URI);
+		dbConfig.setUsername(Constant.MYSQL_USERNAME);
+		dbConfig.setPassword(Constant.MYSQL_PASSWORD);
 		generator.setDataSource(dbConfig);
 
 		// 包配置
@@ -129,21 +134,26 @@ public class MyBatisConfig
 				this.setMap(map);
 			}
 		};
-		final List<FileOutConfig> fConfigs = new ArrayList<>();
-		// 自定义mapper模板（默认在 templates路径下加载），以及自定义输出路径
-		/**fConfigs.add(new FileOutConfig(Constant.TEMPLATE_OF_MAPPER)
-		{
-
-			@Override
-			public String outputFile(TableInfo tableInfo)
-			{
-
-				// 自定义输出文件名 ， 如果 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化
-				return projectPath + Constant.OUTFILE_BASEURL + pConfig.getModuleName() + CString.C_SLASH
-						+ tableInfo.getEntityName() + Constant.OUTFILE_MAPPER_SUFFIX + CString.C_DOT_XML;
-			}
-		});
-		**/
+		List<FileOutConfig> fConfigs = new ArrayList<>();
+        //定义DTO
+		fConfigs.add(new FileOutConfig(Constant.TEMPLATE_OF_DTO) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名
+				return Constant.GLOBAL_OUTDIR + Constant.PACKAGE_DTO + CString.C_SLASH
+						+ tableInfo.getEntityName() + CString.C_DOT_DTO_JAVA;
+            }
+        });
+		// 定义VO
+		fConfigs.add(new FileOutConfig(Constant.TEMPLATE_OF_VO) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+            	// 自定义输出文件名
+				return Constant.GLOBAL_OUTDIR + Constant.PACKAGE_VO + CString.C_SLASH
+						+ tableInfo.getEntityName() + CString.C_DOT_VO_JAVA;
+            }
+        });
+		iConfig.setFileOutConfigList(fConfigs);
 		// TODO 。。。 这儿还可以添加多个自定义配置内容，包括指定HTMl、JSP等的模板以及输出路径
 		// 配置是否创建文件
 		iConfig.setFileCreate(new IFileCreate()
@@ -157,7 +167,6 @@ public class MyBatisConfig
 				return true;
 			}
 		});
-		iConfig.setFileOutConfigList(fConfigs);
 		generator.setCfg(iConfig);
 
 		/**
