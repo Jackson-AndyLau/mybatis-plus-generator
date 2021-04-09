@@ -1,6 +1,23 @@
-HELP.md
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
 /target/
+.settings
+.classpath
+.project
+.gitignore.bak
+.idea
+
+HELP.md
+target/
 !.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -30,5 +47,12 @@ LICENSE
 
 ### VS Code ###
 .vscode/
-/mvnw.cmd
-/mvnw
+
+### 其它 ###
+**/mvnw
+**/mvnw.cmd
+
+**/.mvn
+**/target/
+
+.idea
